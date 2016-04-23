@@ -1,6 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import App from 'App';
+import Layout from 'server/layout';
 
 function renderFullPage(renderedContent) {
   return `
@@ -12,8 +12,7 @@ function renderFullPage(renderedContent) {
         <title>React Server Rendering sample</title>
     </head>
 	<body>
-    <div id="app">${renderedContent}</div>
-
+    <div id="container">${renderedContent}</div>
     <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
     </body>
     </html>
@@ -22,7 +21,7 @@ function renderFullPage(renderedContent) {
 }
 
 export default function render(req, res) {
-  const renderedContent = renderToString(<App />);
+  const renderedContent = renderToString(<Layout />);
   const renderedPage = renderFullPage(renderedContent);
   res.status(200).send(renderedPage);
 };
