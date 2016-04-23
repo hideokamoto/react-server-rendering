@@ -11,7 +11,7 @@ function renderFullPage(renderedContent) {
         <meta charset="utf-8">
         <title>React Server Rendering sample</title>
     </head>
-
+	<body>
     <div id="app">${renderedContent}</div>
 
     <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>

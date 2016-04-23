@@ -6,7 +6,7 @@ var commonLoaders = [
   {
     test: /\.js$|\.jsx$/,
     loader: 'babel',
-    include: path.join(__dirname,  'app')
+    include: path.join(__dirname,  'src')
   },{
     test: /\.json$/,
     loader: 'json-loader'
@@ -17,15 +17,15 @@ module.exports = [
   {
     name: 'browser',
     devtool: 'source-map',
-    context: path.join(__dirname,  'app'),
+    context: path.join(__dirname,  'src'),
 
     entry: {
-      app: './client'
+      src: './client'
     },
 
     output: {
       path: assetsPath,
-      filename: '[name].js',
+      filename: 'app.js',
       publicPath: publicPath
     },
 
@@ -35,19 +35,19 @@ module.exports = [
     resolve: {
       extensions: ['', '.js', '.jsx'],
       modulesDirectories: [
-        'app', 'node_modules'
+        'src', 'node_modules'
       ]
     }
   },{
     name: 'server-side rendering',
-    context: path.join(__dirname, 'app'),
+    context: path.join(__dirname, 'src'),
     entry: {
-      app: './server'
+      src: './server'
     },
     target: 'node',
     output: {
       path: assetsPath,
-      filename: '[name].server.js',
+      filename: 'app.server.js',
       publicPath: publicPath,
       libraryTarget: 'commonjs2'
     },
@@ -57,7 +57,7 @@ module.exports = [
     resolve: {
       extensions: ['', '.js', '.jsx'],
       modulesDirectories: [
-        'app', 'node_modules'
+        'src', 'node_modules'
       ]
     }
   }
