@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 
 export default class Content extends Component {
+	getContent() {
+		if ( this.props.post.content ) {
+			return this.props.post.content.rendered;
+		} else {
+			return 'loading...';
+		}
+	}
+
 	render() {
+		var content = this.getContent();
 		return (
-			<div>
-				<p>Here is POST Content Area.</p>
-				<p>This place does not server side rendering.</p>
-			</div>
+			<div dangerouslySetInnerHTML={{__html: content}} />
 		);
 	}
 }
