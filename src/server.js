@@ -10,6 +10,7 @@ function renderFullPage(renderedContent) {
     <head>
         <meta charset="utf-8">
         <title>React Server Rendering sample</title>
+		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
     </head>
 	<body>
     <div id="container">${renderedContent}</div>

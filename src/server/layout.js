@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
+const Header = require('./header.js');
+const Footer = require('./footer.js');
 
 export default class Layout extends Component {
   render() {
     return (
       <div id='container-row'>
-        <header>
-			Header
-		</header>
+        <Header />
+		<hr/>
 		<div id='app'></div>
-		<aside>
-			sidebar
-		</aside>
-		<footer>
-			Footer
-		</footer>
+		<hr/>
+		<Footer/ >
       </div>
     );
   }
