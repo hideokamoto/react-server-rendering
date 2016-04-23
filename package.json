@@ -27,6 +27,7 @@
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "rimraf": "^2.5.1",
-    "webpack": "^1.12.12"
+    "webpack": "^1.12.12",
+    "wordpress-rest-api": "^0.6.0"
   }
 }
