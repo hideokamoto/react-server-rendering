@@ -12,7 +12,7 @@ export default class Post extends Component {
 		}
 	}
 
-	getPostList() {
+	getPost() {
 		var self = this;
 		wp.posts().id( 1 ).get(function( err, data ) {
 			if ( err ) {
@@ -26,7 +26,7 @@ export default class Post extends Component {
 	}
 
 	componentDidMount() {
-		this.getPostList();
+		this.getPost();
 	}
 
 	render() {
