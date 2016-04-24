@@ -6,7 +6,7 @@ export default class Layout extends Component {
   render() {
     return (
       <div id='container-row'>
-        <Header />
+        <Header items={this.props.items.items}/>
 		<hr/>
 		<div id='app'></div>
 		<hr/>

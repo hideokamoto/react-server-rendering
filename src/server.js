@@ -4,7 +4,7 @@ import Layout from 'server/layout';
 var fetch = require('isomorphic-fetch');
 
 function renderFullPage(renderedContent, initialProps ) {
-	var title = initialProps.items.title.rendered;
+	var title = initialProps.items.name;
 	var prop = safeStringify( initialProps );
   return `
   <!DOCTYPE html>
@@ -33,7 +33,7 @@ function safeStringify(obj) {
 }
 
 export default function render(req, res) {
-	fetch('http://rest-api.dev/wp-json/wp/v2/pages/701')
+	fetch('http://rest-api.dev/wp-json/')
 		.then( apiResult => apiResult.json() )
 		.then( items => {
 			const initialProps = {items};

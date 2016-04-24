@@ -4,8 +4,8 @@ export default class Header extends Component {
 	render() {
 		return (
 			<header>
-				<h2>Here is Header Content Area</h2>
-				<p>Header content is here</p>
+				<h2>{this.props.items.name}</h2>
+				<p>{this.props.items.description}</p>
 			</header>
 		);
 	}
