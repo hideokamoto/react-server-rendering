@@ -2,17 +2,22 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Layout from 'server/layout';
 var fetch = require('isomorphic-fetch');
+import Helmet from "react-helmet";
 
-function renderFullPage(renderedContent, initialProps ) {
+function renderFullPage(renderedContent, initialProps, head ) {
 	var title = initialProps.items.name;
 	var prop = safeStringify( initialProps );
   return `
   <!DOCTYPE html>
-    <html>
+    <html ${head.htmlAttributes.toString()}>
 
     <head>
         <meta charset="utf-8">
-        <title>${title}</title>
+        ${head.title}
+		${head.meta}
+		${head.link}
+		${head.script}
+		${head.style}
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
     </head>
 	<body>
@@ -38,7 +43,8 @@ export default function render(req, res) {
 		.then( items => {
 			const initialProps = {items};
 			const renderedContent = renderToString(<Layout items={initialProps}/>);
-			const renderedPage = renderFullPage( renderedContent, initialProps );
+			let head = Helmet.rewind();
+			const renderedPage = renderFullPage( renderedContent, initialProps, head );
 			res.status( 200 ).send( renderedPage );
 		}).catch( error => {
 			res.status( 500 ).send( error.message );
