@@ -5,7 +5,6 @@ var fetch = require('isomorphic-fetch');
 import Helmet from "react-helmet";
 
 function renderFullPage(renderedContent, initialProps, head ) {
-	var title = initialProps.items.name;
 	var prop = safeStringify( initialProps );
   return `
   <!DOCTYPE html>
@@ -17,7 +16,6 @@ function renderFullPage(renderedContent, initialProps, head ) {
 		${head.meta}
 		${head.link}
 		${head.script}
-		${head.style}
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
     </head>
 	<body>
