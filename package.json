@@ -33,6 +33,7 @@
     "react-tap-event-plugin": "^0.2.2",
     "rimraf": "^2.5.1",
     "webpack": "^1.12.12",
+	"pm2": "latest",
     "wordpress-rest-api": "^0.6.0"
   }
 }

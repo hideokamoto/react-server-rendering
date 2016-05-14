@@ -32,7 +32,7 @@ function renderFullPage(renderedContent, initialProps, head ) {
 }
 
 function safeStringify(obj) {
-  return JSON.stringify(obj).replace(/<\/script/g, '<\\/script').replace(/<!--/g, '<\\!--')
+  return JSON.stringify(obj).replace(/<\/script/g, '<\\/script').replace(/<!--/g, '<\\!--');
 }
 
 export default function render(req, res) {
@@ -45,6 +45,10 @@ export default function render(req, res) {
 			const renderedPage = renderFullPage( renderedContent, initialProps, head );
 			res.status( 200 ).send( renderedPage );
 		}).catch( error => {
-			res.status( 500 ).send( error.message );
+			const initialProps = {error};
+			const renderedContent = renderToString(<Layout items={initialProps}/>);
+			let head = Helmet.rewind();
+			const renderedPage = renderFullPage( renderedContent, initialProps, head );
+			res.status( 500 ).send( renderedPage );
 		})
 };
