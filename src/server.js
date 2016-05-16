@@ -21,10 +21,6 @@ function renderFullPage(renderedContent, initialProps, head ) {
 	<body>
     <div id="container">${renderedContent}</div>
     <script type="text/javascript" charset="utf-8" src="/assets/app.js"></script>
-	<script>
-	var test = ${prop};
-	console.log(test);
-	</script>
     </body>
     </html>
 
@@ -35,20 +31,24 @@ function safeStringify(obj) {
   return JSON.stringify(obj).replace(/<\/script/g, '<\\/script').replace(/<!--/g, '<\\!--');
 }
 
+
 export default function render(req, res) {
-	fetch('http://rest-api.dev/wp-json/')
+	fetch('http://wp-kyoto.net/wp-json/')
 		.then( apiResult => apiResult.json() )
 		.then( items => {
 			const initialProps = {items};
 			const renderedContent = renderToString(<Layout items={initialProps}/>);
 			let head = Helmet.rewind();
 			const renderedPage = renderFullPage( renderedContent, initialProps, head );
-			res.status( 200 ).send( renderedPage );
+			res.statusCode = 200;
+			res.send( renderedPage );
 		}).catch( error => {
 			const initialProps = {error};
 			const renderedContent = renderToString(<Layout items={initialProps}/>);
 			let head = Helmet.rewind();
 			const renderedPage = renderFullPage( renderedContent, initialProps, head );
-			res.status( 500 ).send( renderedPage );
+			res.statusCode = 500;
+			renderPage( res, error );
 		})
+
 };
