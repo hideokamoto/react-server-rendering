@@ -43,7 +43,9 @@ export default class Post extends Component {
 			var author = post['_embedded']['author'][0];
 			var date = new Date( post.date ).toLocaleString();
 			return (
-				<Card key={post.id}>
+				<Card key={post.id} style={{
+						margin: '10px 0'
+					}}>
 					<CardHeader
 						title={author.name}
 						subtitle={date}
