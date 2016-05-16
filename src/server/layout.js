@@ -5,7 +5,6 @@ import Helmet from "react-helmet";
 
 export default class Layout extends Component {
   getItemProps() {
-	  console.log(this.props.items);
 	if ( this.props.items.error ) {
 		var error = {
 			name: 'API Error',

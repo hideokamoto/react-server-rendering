@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { renderToString } from 'react-dom/server';
 import Layout from 'server/layout';
 var fetch = require('isomorphic-fetch');
 import Helmet from "react-helmet";
+
+import getMuiTheme from 'material-ui/lib/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/lib/MuiThemeProvider';
+import {deepOrange500} from 'material-ui/lib/styles/colors';
+
 
 function renderFullPage(renderedContent, initialProps, head ) {
 	var prop = safeStringify( initialProps );
@@ -33,13 +38,30 @@ function safeStringify(obj) {
   return JSON.stringify(obj).replace(/<\/script/g, '<\\/script').replace(/<!--/g, '<\\!--');
 }
 
+class Mui extends Component {
+	render() {
+		return (
+			<MuiThemeProvider muiTheme={this.props.muiTheme}>
+				<Layout items={this.props.items}/>
+			</MuiThemeProvider>
+		)
+	}
+}
+
 
 export default function render(req, res) {
+	var ua = req.headers['user-agent'];
+	const muiTheme = getMuiTheme({
+	  palette: {
+	    accent1Color: deepOrange500,
+	  },
+	  userAgent: ua,
+	});
 	fetch('http://wp-kyoto.net/wp-json/')
 		.then( apiResult => apiResult.json() )
 		.then( items => {
 			const initialProps = {items};
-			const renderedContent = renderToString(<Layout items={initialProps}/>);
+			const renderedContent = renderToString(<Mui items={initialProps} muiTheme={muiTheme}/>);
 			let head = Helmet.rewind();
 			const renderedPage = renderFullPage( renderedContent, initialProps, head );
 			res.statusCode = 200;
