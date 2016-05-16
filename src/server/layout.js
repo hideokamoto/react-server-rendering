@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 const Header = require('./header.js');
 const Footer = require('./footer.js');
+import Helmet from "react-helmet";
 
 export default class Layout extends Component {
   getItemProps() {
@@ -19,6 +20,11 @@ export default class Layout extends Component {
     var items = this.getItemProps();
     return (
       <div id='container-row'>
+		<Helmet
+			meta={[
+				{"name": "description", "content": items.description }
+			]}
+		/>
         <Header items={items} />
 		<hr/>
 		<div id='app'></div>
