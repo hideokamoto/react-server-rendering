@@ -23,6 +23,7 @@ function renderFullPage(renderedContent, initialProps, head ) {
 		${head.script}
 		<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,500' rel='stylesheet' type='text/css'>
 		<style>
+			body{ margin: 0;}
 		</style>
     </head>
 	<body>

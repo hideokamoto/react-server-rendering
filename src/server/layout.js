@@ -25,7 +25,6 @@ export default class Layout extends Component {
 			]}
 		/>
         <Header items={items} />
-		<hr/>
 		<div id='app'></div>
 		<hr/>
 		<Footer/ >

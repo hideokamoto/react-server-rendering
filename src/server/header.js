@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Helmet from 'react-helmet';
+import AppBar from 'material-ui/lib/app-bar';
 
 export default class Header extends Component {
 	render() {
@@ -10,8 +11,9 @@ export default class Header extends Component {
                     meta={[
                         {property: 'og:title', content: this.props.items.name},
                     ]} />
-				<h2>{this.props.items.name}</h2>
-				<p>{this.props.items.description}</p>
+				<AppBar
+				  title={this.props.items.name}
+				/>
 			</header>
 		);
 	}
